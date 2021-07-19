@@ -1,23 +1,26 @@
 {
   "files": {
-    "main.css": "/jonchaupf/static/css/main.a617e044.chunk.css",
-    "main.js": "/jonchaupf/static/js/main.3350ec9e.chunk.js",
-    "main.js.map": "/jonchaupf/static/js/main.3350ec9e.chunk.js.map",
-    "runtime-main.js": "/jonchaupf/static/js/runtime-main.05b096af.js",
-    "runtime-main.js.map": "/jonchaupf/static/js/runtime-main.05b096af.js.map",
-    "static/js/2.50a064d0.chunk.js": "/jonchaupf/static/js/2.50a064d0.chunk.js",
-    "static/js/2.50a064d0.chunk.js.map": "/jonchaupf/static/js/2.50a064d0.chunk.js.map",
-    "static/js/3.13f1f038.chunk.js": "/jonchaupf/static/js/3.13f1f038.chunk.js",
-    "static/js/3.13f1f038.chunk.js.map": "/jonchaupf/static/js/3.13f1f038.chunk.js.map",
+    "main.css": "/jonchaupf/static/css/main.644be7f8.chunk.css",
+    "main.js": "/jonchaupf/static/js/main.e4299358.chunk.js",
+    "main.js.map": "/jonchaupf/static/js/main.e4299358.chunk.js.map",
+    "runtime-main.js": "/jonchaupf/static/js/runtime-main.e57d1162.js",
+    "runtime-main.js.map": "/jonchaupf/static/js/runtime-main.e57d1162.js.map",
+    "static/css/2.cd9ea234.chunk.css": "/jonchaupf/static/css/2.cd9ea234.chunk.css",
+    "static/js/2.861dd1ce.chunk.js": "/jonchaupf/static/js/2.861dd1ce.chunk.js",
+    "static/js/2.861dd1ce.chunk.js.map": "/jonchaupf/static/js/2.861dd1ce.chunk.js.map",
+    "static/js/3.7a891737.chunk.js": "/jonchaupf/static/js/3.7a891737.chunk.js",
+    "static/js/3.7a891737.chunk.js.map": "/jonchaupf/static/js/3.7a891737.chunk.js.map",
     "index.html": "/jonchaupf/index.html",
-    "static/css/main.a617e044.chunk.css.map": "/jonchaupf/static/css/main.a617e044.chunk.css.map",
-    "static/js/2.50a064d0.chunk.js.LICENSE.txt": "/jonchaupf/static/js/2.50a064d0.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/jonchaupf/static/media/logo.6ce24c58.svg"
+    "static/css/2.cd9ea234.chunk.css.map": "/jonchaupf/static/css/2.cd9ea234.chunk.css.map",
+    "static/css/main.644be7f8.chunk.css.map": "/jonchaupf/static/css/main.644be7f8.chunk.css.map",
+    "static/js/2.861dd1ce.chunk.js.LICENSE.txt": "/jonchaupf/static/js/2.861dd1ce.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/jonchaupf/static/media/Gravity-UltraLight.af116dd5.otf"
   },
   "entrypoints": [
-    "static/js/runtime-main.05b096af.js",
-    "static/js/2.50a064d0.chunk.js",
-    "static/css/main.a617e044.chunk.css",
-    "static/js/main.3350ec9e.chunk.js"
+    "static/js/runtime-main.e57d1162.js",
+    "static/css/2.cd9ea234.chunk.css",
+    "static/js/2.861dd1ce.chunk.js",
+    "static/css/main.644be7f8.chunk.css",
+    "static/js/main.e4299358.chunk.js"
   ]
 }
