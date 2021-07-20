@@ -8,11 +8,10 @@ import About from "./pages/about";
 import ProjectDetails from "./pages/projectdetails";
 import Footer from "./components/footer";
 import { device } from "./components/device";
-import BackgroundImage from "./images/3514948.png";
 
 function App() {
     return (
-        <div styles={{ backgroundImage: `url(${BackgroundImage})` }}>
+        <>
             <Navbar></Navbar>
             <Container>
                 <ContentWrap>
@@ -30,7 +29,7 @@ function App() {
                 </ContentWrap>
                 <Footer></Footer>
             </Container>
-        </div>
+        </>
     );
 }
 

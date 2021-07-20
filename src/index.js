@@ -10,7 +10,7 @@ import { Provider } from "./context";
 ReactDOM.render(
     <React.StrictMode>
         <Provider>
-            <BrowserRouter>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <ScrollToTop />
                 <App />
             </BrowserRouter>
