@@ -69,6 +69,11 @@ export default class projectdetails extends Component {
         if (newWindow) newWindow.opener = null;
     };
 
+    openLinkToWebsite = (url) => {
+        const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+        if (newWindow) newWindow.opener = null;
+    };
+
     render() {
         const { getProject } = this.context;
 
@@ -196,7 +201,7 @@ export default class projectdetails extends Component {
                 <DescriptionContainer>{contentSections}</DescriptionContainer>
                 <AnimatedLinkContainer
                     webLink={project.webLink}
-                    openFunctionCallback={this.openInNewTab}
+                    openFunctionCallback={this.openLinkToWebsite}
                 ></AnimatedLinkContainer>
 
                 <GalleryContainer>{imageGallery}</GalleryContainer>
