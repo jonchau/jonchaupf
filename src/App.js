@@ -17,12 +17,8 @@ function App() {
                 <ContentWrap>
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route
-                            exact
-                            path="/projects/:slug"
-                            component={ProjectDetails}
-                        />
 
+                        <Route exact path="/projects/:slug" component={Home} />
                         <Route exact path="/about" component={About} />
                         <Route exact path="/skills" component={Skills} />
                     </Switch>

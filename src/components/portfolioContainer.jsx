@@ -1,11 +1,26 @@
-import React, { Component, useState } from "react";
+import React, {
+    Component,
+    useState,
+    useEffect,
+    useCallback,
+    CSSProperties,
+} from "react";
 import { Context } from "../context";
 import styled from "styled-components";
 import { device, sizeNumber } from "../components/device";
 import Display from "../components/display";
+import ProjectDisplay from "../components/projectdisplay";
 import Loading from "../components/loading";
 import PointerSvg from "../components/pointersvg";
-import { useSpring, animated, config } from "react-spring";
+import {
+    useSpring,
+    animated,
+    config,
+    useTransition,
+    useSpringRef,
+    AnimatedProps,
+} from "react-spring";
+import { Link } from "react-router-dom";
 
 const AnimatedButtonsContainer = (props) => {
     const { underline } = props;
@@ -53,26 +68,82 @@ const AnimatedButton = (props) => {
     const [glow, setGlow] = useState(0);
 
     return (
-        <div onMouseEnter={() => setGlow(1)} onMouseLeave={() => setGlow(0)}>
-            <Button
-                key={props.project.id}
-                onClick={() => props.openFunctionCallback(props.project.id)}
-            >
-                {props.project.name.length > 20
-                    ? props.project.name.substring(0, 20 - 3) + "..."
-                    : props.project.name}
+        <div
+            onMouseEnter={() => setGlow(1)}
+            onMouseLeave={() => setGlow(0)}
+            key={props.project.id}
+        >
+            <StyledLinkTest to={`/projects/${props.project.id}`}>
+                <Button>
+                    {props.project.name.length > 20
+                        ? props.project.name.substring(0, 20 - 3) + "..."
+                        : props.project.name}
 
-                <PointerSvg
-                    hovered={glow}
-                    tablet={tablet}
-                    scaleAfter={"scale(0.65)"}
-                    scaleBefore={"scale(0)"}
-                    fillAfter={"rgba(99, 255, 239, 0.5)"}
-                    fillBefore={"rgba(99, 255, 239, 0)"}
-                    location={"left:-35px; top: 0;"}
-                    position={"absolute"}
-                ></PointerSvg>
-            </Button>
+                    <PointerSvg
+                        hovered={glow}
+                        tablet={tablet}
+                        scaleAfter={"scale(0.65)"}
+                        scaleBefore={"scale(0)"}
+                        fillAfter={"rgba(99, 255, 239, 0.5)"}
+                        fillBefore={"rgba(99, 255, 239, 0)"}
+                        location={"left:-35px; top: 0;"}
+                        position={"absolute"}
+                    ></PointerSvg>
+                </Button>
+            </StyledLinkTest>
+        </div>
+    );
+};
+
+const AnimatedDisplayContainer = (props) => {
+    const pages = props.projects.map((project) => {
+        return ({ style }) => (
+            <ProjectDisplay
+                project={project}
+                style={{ ...style }}
+            ></ProjectDisplay>
+        );
+    });
+    /*
+    const pages = [
+        ({ style }) => (
+            <ProjectDisplay project={props.projects[0]} style={{ ...style }}>
+                A
+            </ProjectDisplay>
+        ),
+        ({ style }) => (
+            <animated.div style={{ ...style, background: "lightblue" }}>
+                B
+            </animated.div>
+        ),
+        ({ style }) => (
+            <animated.div style={{ ...style, background: "lightgreen" }}>
+                C
+            </animated.div>
+        ),
+    ]; */
+    //console.log(pages);
+    // console.log(displayProjects);
+
+    const [index, set] = useState(0);
+    const onClick = useCallback(() => set((state) => (state + 1) % 3), []);
+    const transRef = useSpringRef();
+    const transitions = useTransition(index, {
+        ref: transRef,
+        keys: null,
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+    });
+    useEffect(() => {
+        transRef.start();
+    }, [index]);
+    return (
+        <div onClick={onClick}>
+            {transitions((style, i) => {
+                const Page = pages[i];
+                return <Page style={style}></Page>;
+            })}
         </div>
     );
 };
@@ -110,7 +181,7 @@ export default class portfolioContainer extends Component {
         return this.setState({ tablet: false });
     };
 
-    getProject = (project) => {
+    /*    getProject = (project) => {
         this.setState({ project: project }, () => {});
     };
 
@@ -118,8 +189,8 @@ export default class portfolioContainer extends Component {
         this.setState({ selectedProject: project }, () => {
             this.getProject(project);
         });
-    };
-
+    }; 
+*/
     closeProject = () => {
         this.setState({ project: {}, selectedProject: "", underline: true });
     };
@@ -167,11 +238,11 @@ export default class portfolioContainer extends Component {
 
         const displayProjects = projects.map((project) => {
             return (
-                <Display
+                <ProjectDisplay
                     key={project.id}
                     project={project}
                     open={this.state.project}
-                ></Display>
+                ></ProjectDisplay>
             );
         });
 
@@ -224,14 +295,19 @@ export default class portfolioContainer extends Component {
                         }
                     ></MobileUnderline>
                 </ToggleContainer>
-                <DisplayContainer>{displayProjects}</DisplayContainer>
+                <DisplayContainer>
+                    <AnimatedDisplayContainer
+                        projects={projects}
+                    ></AnimatedDisplayContainer>
+                </DisplayContainer>
             </Container>
         );
     }
 }
 
 const Container = styled.div`
-    overflow: hidden;
+    //overflow: hidden;
+    //overflow: auto;
     height: 100vh;
     padding: 80px 0 20px 0;
     box-sizing: border-box;
@@ -331,6 +407,25 @@ const Button = styled(animated.div)`
     }
 `;
 
+const StyledLinkTest = styled(Link)`
+    text-decoration: none;
+
+    &:link {
+        color: black;
+    }
+
+    &:visited {
+        color: black;
+    }
+
+    &:hover {
+        color: black;
+    }
+
+    @media ${device.tablet} {
+    }
+`;
+
 const ButtonsContainerUnderline = styled(animated.div)`
     background-color: rgb(100, 100, 100);
     position: absolute;
@@ -359,9 +454,14 @@ const DisplayContainer = styled.div`
     box-sizing: border-box;
 
     @media ${device.tablet} {
-        width: 80%;
+        //width: 80%;
         max-width: 1000px;
-        height: 600px;
+        // height: 600px;
+
+        //new
+        width: 100%;
+        margin: 0 120px 0 120px;
+        padding-top: 120px;
     }
 `;
 

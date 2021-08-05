@@ -22,6 +22,7 @@ const Container = styled.div`
     backdrop-filter: blur(5px);
     display: grid;
 
+    background-color: red;
     @media ${device.tablet} {
         display: none;
     }

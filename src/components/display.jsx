@@ -19,18 +19,22 @@ const AnimatedDetailsContainer = (props) => {
             if (!tablet) {
                 await props({
                     opacity: open ? "1" : "0",
-                    left: open ? "0%" : "50%",
+                    transform: open
+                        ? "scale(1) translate(10%, 20%)"
+                        : "scale(0) translate(10%, 20%)",
+                    /*        left: open ? "0%" : "50%",
                     bottom: open ? "0%" : "50%",
                     transform: open
                         ? "translate(10%, 20%)"
-                        : "translate(-50%, -50%)",
+                        : "translate(-50%, -50%)", */
                 });
             } else {
                 await props({
                     opacity: "0",
-                    top: "0",
+                    transform: "scale(0) translate(10%, 20%)",
+                    /*     top: "0",
                     left: "0",
-                    transform: "translate(0, 0)",
+                    transform: "translate(0, 0)", */
                 });
             }
         },
@@ -74,18 +78,22 @@ const AnimatedDescriptionContainer = (props) => {
             if (!tablet) {
                 await props({
                     opacity: open ? "1" : "0",
-                    bottom: open ? "0%" : "50%",
+                    transform: open
+                        ? "scale(1) translate(-15%, 10%)"
+                        : "scale(0) translate(15%, -10%)",
+                    /*  bottom: open ? "0%" : "50%",
                     right: open ? "0%" : "50%",
                     transform: open
                         ? "translate(15%, -10%)"
-                        : "translate(-50%, -50%)",
+                        : "translate(-50%, -50%)", */
                 });
             } else {
                 await props({
                     opacity: open ? "1" : "0",
-                    bottom: "0",
+                    transform: "scale(0) translate(15%, -10%)",
+                    /*       bottom: "0",
                     left: "0",
-                    transform: "translate(0, 0)",
+                    transform: "translate(0, 0)", */
                 });
             }
         },
@@ -122,18 +130,22 @@ const AnimatedNameContainer = (props) => {
             if (!tablet) {
                 await props({
                     opacity: open ? "1" : "0",
-                    top: open ? "0%" : "50%",
-                    left: open ? "0%" : "50%",
+                    transform: open
+                        ? "scale(1) translate(-10%, -20%)"
+                        : "scale(0) translate(-10%, -20%)",
+                    /*     top: open ? "0%" : "50%",
+                    right: open ? "0%" : "50%",
                     transform: open
                         ? "translate(-10%, -20%)"
-                        : "translate(-50%, -50%)",
+                        : "translate(-50%, -50%)", */
                 });
             } else {
                 await props({
                     opacity: open ? "1" : "0",
-                    top: "0",
-                    left: "0",
-                    transform: "translate(0, 0)",
+                    transform: "scale(0) translate(-10%, -20%)",
+                    /*     top: "0",
+                    right: "0",
+                    transform: "translate(0, 0)", */
                 });
             }
         },
@@ -300,6 +312,9 @@ const NameContainer = styled(animated.div)`
     pointer-events: none;
 
     @media ${device.tablet} {
+        top: 0;
+        right: 0;
+
         width: 240px;
     }
 `;
@@ -327,6 +342,9 @@ const DescriptionContainer = styled(animated.div)`
     padding: 15px 0 15px 0;
 
     @media ${device.tablet} {
+        bottom: 0;
+        left: 0;
+
         width: auto;
         padding: 30px 40px;
     }
@@ -355,6 +373,9 @@ const DetailsContainer = styled(animated.div)`
     height: 50px;
 
     @media ${device.tablet} {
+        bottom: 0;
+        left: 0;
+
         height: auto;
         width: auto;
         padding: 30px 40px;
